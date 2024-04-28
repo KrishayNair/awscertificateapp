@@ -14,7 +14,6 @@ const Navbar = () => {
         </div>
         <div className="text-white">
           <a href="/" className="text-gray-300 hover:text-white mr-4">Home</a>
-          <a href="/quiz" className="text-gray-300 hover:text-white mr-4">Quiz</a>
           
         </div>
         {/* <div>
