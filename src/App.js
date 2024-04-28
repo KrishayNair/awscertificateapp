@@ -88,7 +88,6 @@ const App = ({ signOut }) => {
         </div>
         <div className="">
           <a href="/" className=" hover:text-white mr-4">Home</a>
-          <a href="/quiz" className=" hover:text-white mr-4">Quiz</a>
           <Button className="bg-black text-white" onClick={signOut}>Sign Out</Button>
           
         </div>
