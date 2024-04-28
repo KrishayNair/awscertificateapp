@@ -9,7 +9,7 @@ const Navbar = () => {
       <nav className="py-4 px-6 flex items-center justify-between  dark:bg-gray-900">
         <div className="flex item-center">
           <a href="/">
-            <div className="text-lg font-bold text-white">Note Maker and Quiz App</div>
+            <div className="text-lg font-bold text-white">Certificate / Notes Storage and Quiz App</div>
           </a>
         </div>
         <div className="text-white">
