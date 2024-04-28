@@ -78,11 +78,11 @@ const App = ({ signOut }) => {
 
   const Quizapp=()=>{
     return (
-      <View className="App">
+      <View className="App overflow-x-hidden mb-20">
       <Authenticator>
         <Navbar/>
         <Hero/>
-      <Heading level={1} className="font-bold">Notes App</Heading>
+      <Heading level={1} className="font-bold">Certificate / Notes App</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField

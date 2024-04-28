@@ -1,74 +1,72 @@
-import React, { useState } from 'react';
-import quizData from './quizData';
-import Navbar from './navbar';
-
+import React, { useState } from 'react'
+import { QuizData } from './quizData'
+import QuizResult from './QuizResult';
+import Navbar from "./navbar"
+import "./Quiz.css"
 function Quiz() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(""); 
-  const [isCorrect, setIsCorrect] = useState(null);
-
-  const handleAnswerOptionClick = (option) => {
-    const correctAnswer = quizData[currentQuestion].answer;
-    setSelectedAnswer(option);
-    if (option === correctAnswer) {
-      setScore(score + 1);
-      setIsCorrect(true);
-    } else {
-      setIsCorrect(false);
+    const [currentQuestion,setCurrentQuestion]=useState(0);
+    const [score,setScore] = useState(0);
+    const [clickedOption,setClickedOption]=useState(0);
+    const [showResult,setShowResult]=useState(false);
+    
+    const changeQuestion = ()=>{
+        updateScore();
+        if(currentQuestion< QuizData.length-1){
+            setCurrentQuestion(currentQuestion+1);
+            setClickedOption(0);
+        }else{
+            setShowResult(true)
+        }
     }
-
-    // Delay moving to the next question to allow the user to see feedback
-    setTimeout(() => {
-      const nextQuestion = currentQuestion + 1;
-      if (nextQuestion < quizData.length) {
-        setCurrentQuestion(nextQuestion);
-        setIsCorrect(null); // Reset for the next question
-        setSelectedAnswer(""); // Reset selected answer
-      } else {
-        setShowScore(true);
-      }
-    }, 1000); // Adjust time as needed
-  };
-
+    const updateScore=()=>{
+        if(clickedOption===QuizData[currentQuestion].answer){
+            setScore(score+1);
+        }
+    }
+    const resetAll=()=>{
+        setShowResult(false);
+        setCurrentQuestion(0);
+        setClickedOption(0);
+        setScore(0);
+    }
   return (
-    <div className='quiz'>
+    <div>
       <Navbar/>
-      <h1 className="text-6xl text-red text-center mb-4">Quiz App</h1>
-      {showScore ? (
-        <div className='text-center'>
-          You scored {score} out of {quizData.length}
+      <div className='bg'>
+        <p className="heading-txt">Quiz APP</p>
+        <div className="main">
+        <div className="container">
+            {showResult ? (
+                <QuizResult score={score} totalScore={QuizData.length} tryAgain={resetAll}/>
+            ):(
+            <>
+            <div className="question">
+                <span id="question-number">{currentQuestion+1}. </span>
+                <span id="question-txt">{QuizData[currentQuestion].question}</span>
+            </div>
+            <div className="option-container">
+                {QuizData[currentQuestion].options.map((option,i)=>{
+                    return(
+                        <button 
+                        // className="option-btn"
+                        className={`option-btn ${
+                            clickedOption == i+1?"checked":null
+                        }`}
+                        key={i}
+                        onClick={()=>setClickedOption(i+1)}
+                        >
+                        {option}
+                        </button>
+                    )
+                })}                
+            </div>
+            <input type="button" value="Next" id="next-button" onClick={changeQuestion}/>
+            </>)}
         </div>
-      ) : (
-        <>
-          <div className='w-full'>
-            <div className='flex place-items-center mb-4'>
-              <span className='w-full text-center text-2xl'>Question {currentQuestion + 1}/{quizData.length}</span>
-            </div>
-            <div className='question-text text-center'>{quizData[currentQuestion].question}</div>
-          </div>
-          <div className='text-center m-2'>
-            {quizData[currentQuestion].options.map((option) => (
-              <button 
-              className='m-4 outline p-2'
-                onClick={() => handleAnswerOptionClick(option)} 
-                key={option}
-                style={{ backgroundColor: selectedAnswer === option ? (isCorrect ? 'lightgreen' : 'pink') : '' }}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-          {selectedAnswer && (
-            <div className='text-center' style={{ marginTop: '10px' }}>
-              {isCorrect ? 'Correct! 🎉' : 'Sorry, that’s not right. 😢'}
-            </div>
-          )}
-        </>
-      )}
     </div>
-  );
+    </div>
+    </div>
+  )
 }
 
-export default Quiz;
+export default Quiz
