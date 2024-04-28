@@ -78,9 +78,25 @@ const App = ({ signOut }) => {
 
   const Quizapp=()=>{
     return (
-      <View className="App overflow-x-hidden mb-20">
+      <View className="App overflow-x-hidden mb-20 ">
       <Authenticator>
-        <Navbar/>
+      <nav className="py-4 px-6 flex items-center justify-between text-black bg-gray-100">
+        <div className="flex item-center text-black">
+          <a href="/">
+            <div className="text-lg font-bold ">Certificate / Notes Storage and Quiz App</div>
+          </a>
+        </div>
+        <div className="">
+          <a href="/" className=" hover:text-white mr-4">Home</a>
+          <a href="/quiz" className=" hover:text-white mr-4">Quiz</a>
+          <Button className="bg-black text-white" onClick={signOut}>Sign Out</Button>
+          
+        </div>
+        {/* <div>
+          
+              <a href="/sign-in" className="text-gray-300 hover:text-white mr-4">Logout</a>
+        </div> */}
+      </nav>
         <Hero/>
       <Heading level={1} className="font-bold">Certificate / Notes App</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
@@ -138,10 +154,12 @@ const App = ({ signOut }) => {
           </Flex>
         ))}
       </View>
-      <Button onClick={signOut}>Sign Out</Button>
-      
+      <Quiz/>
+      {/* <Button onClick={signOut}>Sign Out</Button> */}
+     
       </Authenticator>
     </View>
+    
 
     )
   }

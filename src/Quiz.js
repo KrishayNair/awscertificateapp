@@ -31,7 +31,6 @@ function Quiz() {
     }
   return (
     <div>
-      <Navbar/>
       <div className='bg'>
         <p className="heading-txt">Quiz APP</p>
         <div className="main">

@@ -45,9 +45,8 @@
     margin: 10px;
     text-align: center;  
     text-transform: uppercase;
-    position: absolute;
+    position: relative;
     top: 10rem;
-    left: 42.5rem;
   }
   .question{
     margin:8px;
