@@ -1,0 +1,14 @@
+{
+  "resourceName": "imagestoragecc",
+  "policyUUID": "82e7aabd",
+  "bucketName": "awscccertificatefinacf7a722913b84c6d9ea85914d72",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
